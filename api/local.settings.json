@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "PYTHON_ISOLATE_PACKAGES": "1",
+    "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
+    "languageWorkers:python:defaultExecutablePath": ".venv/Scripts/python.exe",
+    "AzureSqlConnectionString": "Driver={ODBC Driver 18 for SQL Server};Server=tcp:cjsql.database.windows.net,1433;Database=cjsql;Uid=jab;Pwd=Kimiko2026!;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+  }
+}
