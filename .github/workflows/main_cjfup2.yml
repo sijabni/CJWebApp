@@ -33,10 +33,12 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-        working-directory: ./api
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+        working-directory: ./api
 
       # Optional: Add step to run tests here
 
@@ -75,3 +77,4 @@ jobs:
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
 
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_836BBAF7C28B482C9BF1796864E0B7E2 }}
+
