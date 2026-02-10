@@ -33,6 +33,7 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
+        working-directory: ./api
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -72,4 +73,5 @@ jobs:
           app-name: 'cjfup2'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_836BBAF7C28B482C9BF1796864E0B7E2 }}
