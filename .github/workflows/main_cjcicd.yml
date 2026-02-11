@@ -11,10 +11,8 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_NAME: 'cjcicd'
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: './api' # set this to the path to your web app project, defaults to the repository root
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
   PYTHON_VERSION: '3.11' # set this to the python version to use (supports 3.6, 3.7, 3.8)
-  
 
 jobs:
   build:
@@ -37,10 +35,7 @@ jobs:
           source venv/bin/activate
 
       - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          python -m pip install --upgrade pop
-        working-directory: ./api
+        run: pip install -r requirements.txt
 
       # Optional: Add step to run tests here
 
@@ -76,9 +71,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_BECA535D80794D94BCFAB6DA92FC2338 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_394D1F6528DF4A21B91722B6CDF6C87B }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_18E1345B8150407A97242E30190B3FF2 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_5B9F2C36526B460BA3B829339A4D6D41 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_DF14183BE94D420891789FEB5CA6F34A }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_58490FB629B2445CA52AE50AC4E43B12 }}
 
       - name: 'Deploy to Azure Functions'
         uses: Azure/functions-action@v1
@@ -87,11 +82,4 @@ jobs:
           app-name: 'cjcicd'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          scm-do-build-during-deployment: true
-          enable-oryx-build: true
-
           
-
-
-
-
