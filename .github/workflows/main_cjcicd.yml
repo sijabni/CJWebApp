@@ -38,6 +38,7 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+        working-directory: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
 
       # Optional: Add step to run tests here
 
@@ -89,3 +90,4 @@ jobs:
           enable-oryx-build: true
 
           
+
