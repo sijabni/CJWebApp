@@ -13,6 +13,9 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@v4
@@ -37,3 +40,4 @@ jobs:
           # These two lines are the magic for your new plan:
           scm-do-build-during-deployment: true
           enable-oryx-build: true
+
