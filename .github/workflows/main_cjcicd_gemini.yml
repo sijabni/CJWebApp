@@ -1,0 +1,42 @@
+name: Deploy Portfolio Backend
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  AZURE_FUNCTIONAPP_NAME: 'cjcicd'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: './api' 
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write      # Required for OIDC login
+      contents: read       # Required for checking out code
+    steps:
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@v4
+
+      - name: 'Setup Python ${{ env.PYTHON_VERSION }}'
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: 'Login to Azure'
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6C8D62FF3EE04B288F9E94C4CD611D2A }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D3CF50999076406BA8DD56E5DA2C72BA }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1A4C672C088B446780CB3B1E8330A7B8 }}
+
+      - name: 'Deploy to Azure Functions'
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          # These two flags are critical for your new plan:
+          scm-do-build-during-deployment: true
+          enable-oryx-build: true
