@@ -87,7 +87,10 @@ jobs:
           app-name: 'cjcicd'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          scm-do-build-during-deployment: true
+          enable-oryx-build: true
 
           
+
 
 
