@@ -11,6 +11,7 @@ on:
   workflow_dispatch:
 
 env:
+  AZURE_FUNCTIONAPP_NAME: 'cjcicd'
   AZURE_FUNCTIONAPP_PACKAGE_PATH: './api' # set this to the path to your web app project, defaults to the repository root
   PYTHON_VERSION: '3.13' # set this to the python version to use (supports 3.6, 3.7, 3.8)
   
@@ -88,4 +89,5 @@ jobs:
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
 
           
+
 
