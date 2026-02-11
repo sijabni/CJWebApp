@@ -35,7 +35,10 @@ jobs:
           source venv/bin/activate
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          python -m pip install --upgrade pop
+        working-directory: ./api
 
       # Optional: Add step to run tests here
 
@@ -82,4 +85,5 @@ jobs:
           app-name: 'cjcicd'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+
           
